@@ -29,3 +29,14 @@ endif;
 add_action( 'wp_enqueue_scripts', 'child_theme_configurator_css', 10 );
 
 // END ENQUEUE PARENT ACTION
+// UTILISER LA SINGLE6PROJET.PHP POUR LE CUSTOM POST TYPE: 'projet'
+function custom_post_type_template($single_template) {
+    global $post;
+
+    if ($post->post_type == 'projet') {
+        $single_template = dirname(__FILE__) . '/template/single-projet.php';
+    }
+
+    return $single_template;
+}
+add_filter('single_template', 'custom_post_type_template');

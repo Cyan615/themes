@@ -29,7 +29,13 @@ endif;
 add_action( 'wp_enqueue_scripts', 'child_theme_configurator_css', 10 );
 
 // END ENQUEUE PARENT ACTION
-// UTILISER LA SINGLE6PROJET.PHP POUR LE CUSTOM POST TYPE: 'projet'
+
+function enqueue_child_theme_styles() {
+    wp_enqueue_style( 'single-projet', get_stylesheet_directory_uri() . '/css/single-projet.css' );
+}
+add_action( 'wp_enqueue_scripts', 'enqueue_child_theme_styles' );
+
+// UTILISER LA SINGLE-PROJET.PHP POUR LE CUSTOM POST TYPE: 'projet'
 function custom_post_type_template($single_template) {
     global $post;
 
